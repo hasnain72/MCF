@@ -1,0 +1,76 @@
+<!--<agm-map [latitude]="lat"  [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map> -->
+
+<div class="container">
+  <br>
+  <div class="row" id="top">
+    <div class="col-md-12">
+      <form class="form-inline" #sbusersForm="ngForm" (ngSubmit)="onSubmit(sbusersForm)">
+        <label class="control-label col-sm-1 small"><strong>Search:</strong></label>
+        <select class="form-control" id="sel1" [(ngModel)]="selectedElement.id" name="abc" (change)="onChange($event)">
+          <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
+        </select>
+        <!--<input class="form-control" #name="ngModel" [(ngModel)]="sbusersService.selectedSbuser.name" name="search" placeholder="Search" required>
+        <button type="submit" class="btn btn-default"  id="search" [disabled]="!sbusersForm.valid">
+          <i class="fa fa-floppy-o"></i> Submit</button>
+          <button type="button" class="btn btn-default" (click)="resetForm()" [disabled]="!sbusersForm.valid"><i class="fa fa-repeat"></i> Reset</button> -->
+      </form>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12" id="table_scroll">
+      <table st-table="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer ID</th>
+            <th>Business ID</th>
+            <th>RP ID</th>
+            <th>Order Time</th>
+            <th>Delivery Time</th>
+            <th>Order Location</th>
+            <th>No of Products</th>
+            <th>Total Price</th>
+            <th>Discount</th>
+            <th>Status</th>
+            <!--<th>Action</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sbusers of sbusersList | paginate: { itemsPerPage:4, currentPage: p }; let i=index">
+            <td>{{sbusers.order_id}}</td>
+            <td>{{sbusers.customer_id}}</td>
+            <td>{{sbusers.business_id}}</td>
+            <td>{{sbusers.resource_pid}}</td> 
+            <!--<td>{{sbuserNameList[i].name}}</td> -->
+            <td>{{sbusers.order_time}}</td>
+            <td>{{sbusers.delivery_time}}</td> 
+            <td>{{sbusers.order_location}}</td> 
+            <td>{{sbusers.no_of_products}}</td>
+            <td>{{sbusers.total_price}}</td>
+            <td>{{sbusers.discount}}</td>
+            <td>
+              <button type="button" class="btn btn-sm btn-primary" *ngIf="activeSbuser==sbusers.order_status">
+                <i class="fa fa-check-circle"></i>                 
+              </button>
+              <button type="button" class="btn btn-sm btn-success" *ngIf="pausedSbuser==sbusers.order_status">
+                <i class="fa fa-check-circle"></i>                   
+              </button>
+              <button type="button" class="btn btn-sm btn-default" *ngIf="notVerified==sbusers.order_status">
+                <i class="fa fa-question-circle"></i>              
+              </button>
+              <!--<button>{{sbusers.status}}</button>-->
+            </td>
+            <!--<td>
+              <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(sbusers)">
+                  <i class="fa fa-trash"></i>
+              </button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

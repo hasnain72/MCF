@@ -1,0 +1,22 @@
+<table st-table="rowCollection" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Category ID</th>
+      <th>Category Name</th>
+      <th>Image</th>
+      <th>Category Description</th>
+      <th>Parent ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="row" *ngFor="let category of categoryList | paginate: { itemsPerPage:5, currentPage: p }" (click)="onItemClick(category)">
+      <td>{{category.cat_id}}</td>
+      <td>{{category.cat_name}}</td>
+      <!--<td>{{category.cat_image}}</td> -->
+      <td><img id="imgSize" [src]="category.cat_image"> </td>
+      <td>{{category.cat_desc}}</td>
+      <td>{{category.parent_id}}</td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -1,0 +1,65 @@
+<div class="container">
+  <div style="text-align:center">
+    <br><br>
+    <h1>Smart Crowd User</h1>
+    <p class="lead">Admin can perform all the tasks related to Smart<br>Crowd User like; Performing CRUD operation directly from Firebase.</p>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" #sbusersForm="ngForm" (ngSubmit)="onSubmit(sbusersForm)">
+        <label class="control-label col-sm-1 small"><strong>Search:</strong></label>
+        <select class="form-control" id="sel1" [(ngModel)]="selectedElement.id" name="abc" (change)="onChange($event)">
+          <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
+        </select>
+        <input class="form-control" #name="ngModel" [(ngModel)]="scusersService.selectedSbuser.name" name="search" placeholder="Search" required>
+        <button type="submit" class="btn btn-default"  id="search" [disabled]="!sbusersForm.valid">
+          <i class="fa fa-floppy-o"></i> Submit</button>
+          <button type="button" class="btn btn-default" (click)="resetForm()" [disabled]="!sbusersForm.valid"><i class="fa fa-repeat"></i> Reset</button> 
+      </form>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>SignUp Date</th>
+            <th>Wallet</th>
+            <th>Mobile #</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sbusers of sbusersList | paginate: { itemsPerPage:3, currentPage: p }">
+            <td>{{sbusers.name}}</td>
+            <td>{{sbusers.email}}</td>
+            <td>{{sbusers.created_at}}</td>
+            <td>{{sbusers.wallet}} . Rs</td>
+            <td>{{sbusers.mobile_no}}</td>
+            <td>
+              <button type="button" class="btn btn-sm btn-success" *ngIf="activeSbuser==sbusers.status" (click)="Pause(sbusers)">
+                  <i class="fa fa-check-circle"></i>                  
+              </button>
+              <button type="button" class="btn btn-sm btn-warning" *ngIf="pausedSbuser==sbusers.status" (click)="Activate(sbusers)">
+                <i class="fa fa-pause-circle"></i>                  
+              </button>
+              <button type="button" class="btn btn-sm btn-default" *ngIf="notVerified==sbusers.status" (click)="Authenticate(sbusers)">
+                <i class="fa fa-question-circle"></i>              
+              </button>
+              <!--<button>{{sbusers.status}}</button>-->
+            </td>
+            <td>
+              <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(sbusers)">
+                  <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+  <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="categoryService.selectedCategory.$key">
+  <div>
+    <label>Category Name</label>
+    <input class="form-control" name="cat_name" #name="ngModel" [(ngModel)]="categoryService.selectedCategory.cat_name" placeholder="Category Name" required>
+  </div>
+  <div>
+    <label>Category Description</label>
+    <input class="form-control" name="cat_desc" #name="ngModel" [(ngModel)]="categoryService.selectedCategory.cat_desc" placeholder="Category Description" required>
+  </div>
+  <div>
+    <label>Category ID</label>
+    <input class="form-control" name="cat_id" #name="ngModel" [(ngModel)]="categoryService.selectedCategory.cat_id" placeholder="Category ID" required>
+  </div>
+  <div>
+    <label>Parent ID</label>
+    <input class="form-control" name="parent_id" #name="ngModel" [(ngModel)]="categoryService.selectedCategory.parent_id" placeholder="Parent ID" required>
+  </div>
+  <div>
+    <!--<label type="hidden">Category Image</label> -->
+    <input type="hidden" class="form-control" name="cat_image" #name="ngModel" [(ngModel)]="categoryService.selectedCategory.cat_image" placeholder="Category Image" required>
+  </div> <br>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success" [disabled]="!categoryForm.valid">
+      <i class="fa fa-floppy-o"></i> Submit</button>
+    <button type="button" class="btn btn-danger" *ngIf="categoryService.selectedCategory.$key!=null" (click)="onDelete(categoryForm)">
+      <i class="fa fa-trash"></i> Delete</button>
+    <button type="button" class="btn btn-info" *ngIf="categoryService.selectedCategory.$key!=null" (click)="resetForm()">
+        <i class="fa fa-repeat"></i> Reset</button>
+  </div>
+</form>

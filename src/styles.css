@@ -1,1 +1,165 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+button,ul.list-group.hover li:hover {
+  cursor: pointer;
+}
+
+#row {
+  cursor: pointer;
+}
+
+body {
+    padding-top: 80px; 
+ }
+ .starter-template {
+     padding: 3rem 1.5rem;
+     text-align: center;
+ }
+
+ .table-striped {
+    font-size: 13px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 5px;
+  }
+  
+  thead th {
+    background-color: #006DCC;
+    color: white;
+  }
+  
+  tbody td {
+    background-color: #EEEEEE;
+  }
+  
+  tr td:first-child,
+  tr th:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  
+  tr td:last-child,
+  tr th:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+
+
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    height: 90px;
+}
+
+
+.navbar-default {
+  background: #005986;
+}
+.navbar {
+  border: 0;
+  border-radius: 0;
+}
+ul.nav {
+  list-style: none;
+  border-right: 1px solid #84B6D0;
+}
+ul.nav li {
+  padding: 20px 0;
+  display: inline-block;
+}
+ul.nav li a {
+  padding: 20px 10px;
+  color: #fff;
+  position: relative;
+}
+ul.nav li a:after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 60%;
+  right: 0;
+  background: #fff;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+ul.nav li:first-child a:before {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 60%;
+  left: 0;
+  background: #fff;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+  color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  background: #022E44;
+}
+
+
+body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #45494c;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+
+.dialogue-box {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.25);
+  position: relative;
+}
+
+.triangle-with-shadow {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.25);
+  transform: rotate(45deg);
+  position: absolute;
+  right: -40px;
+  bottom: -39px;
+}
+
+.triangle-with-shadow:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  transform: rotate(45deg);
+  top: 75px;
+  left: 25px;
+  -webkit-box-shadow: 10px 1px 10px 0px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow: 10px 1px 10px 0px rgba(50, 50, 50, 0.25);
+  box-shadow: 10px 1px 10px 0px rgba(50, 50, 50, 0.25);
+}
+/* demo only */

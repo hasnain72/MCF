@@ -1,0 +1,122 @@
+<div *ngIf="active==1" class="container">
+  <div style="text-align:center">
+    <br><br>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" #sbusersForm="ngForm" (ngSubmit)="onSubmit(sbusersForm)">
+        <label class="control-label col-sm-1 small"><strong>Search:</strong></label>
+        <select class="form-control" id="sel1" [(ngModel)]="selectedElement.id" name="abc" (change)="onChange($event)">
+          <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
+        </select>
+        <input class="form-control" #name="ngModel" [(ngModel)]="scusersService.selectedSbuser.name" name="search" placeholder="Search by Store Name" required>
+        <button type="submit" class="btn btn-default"  id="search" [disabled]="!sbusersForm.valid">
+          <i class="fa fa-floppy-o"></i> Submit</button>
+          <button type="button" class="btn btn-default" (click)="resetForm()" [disabled]="!sbusersForm.valid"><i class="fa fa-repeat"></i> Reset</button> 
+      </form>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Store ID</th>
+            <th>Store Name</th>
+            <th>Category ID</th>
+            <th>Location</th>
+            <th>Business User ID</th>
+            <th>Established</th>
+            <!--<th>Action</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="row" *ngFor="let sbusers of sbusersList | paginate: { itemsPerPage:4, currentPage: p };  let i=index" (click)="onItemClick(sbusers)">
+            <td>{{sbusers.store_id}}</td>
+            <td>{{sbusers.title}}</td>
+            <td>{{sbusers.cat_id}}</td>
+            <td>{{sbusers.location}}</td>
+            <!--<td>{{loc[i].name}}</td> -->
+            <td>{{sbusers.business_user_id}}</td>
+            <td>{{sbusers.created_at}}</td>
+            <!--<td>
+              <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(sbusers)">
+                  <i class="fa fa-trash"></i>
+              </button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="active==0">
+  <div class="container">
+    <div style="text-align:center">
+      <br><br>
+    </div><br>
+    <div class="row">
+      <div class="col-md-12">
+        <form class="form-inline" #sbusersForm="ngForm" (ngSubmit)="onSubmit(sbusersForm)">
+          <label class="control-label col-sm-1 small"><strong>Search:</strong></label>
+          <select class="form-control" id="sel1" [(ngModel)]="selectedElement.id" name="abc" (change)="onChangeProduct($event)">
+            <option *ngFor="let v of productSelectValues" [value]="v.id">{{v.name}}</option>
+          </select>
+          <input class="form-control" #name="ngModel" [(ngModel)]="scusersService.selectedSbuser.name" name="search" placeholder="Search with Title" required>
+          <button type="submit" class="btn btn-default"  id="search" [disabled]="!sbusersForm.valid">
+            <i class="fa fa-floppy-o"></i> Submit</button>
+            <button type="button" class="btn btn-default" (click)="resetForm()" [disabled]="!sbusersForm.valid"><i class="fa fa-repeat"></i> Reset</button> 
+       
+            <img id="backImage" src="assets/images/images.png" alt="image" (click)="back()">
+        </form> 
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-md-12">
+        <table st-table="rowCollection" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Description</th>
+              <th>Inventory</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Image</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sbusers of productsList | paginate: { itemsPerPage:4, currentPage: p }">
+              <td>{{sbusers.product_id}}</td>
+              <td>{{sbusers.product_name}}</td>
+              <td>{{sbusers.description}}</td>
+              <td>{{sbusers.inventory}}</td>
+              <td>{{sbusers.price}} </td>
+              <td>{{sbusers.qty}}</td>
+              <td><img id="imgSize" [src]="sbusers.image"> </td>
+              <td>
+                <button type="button" class="btn btn-sm btn-success" *ngIf="activeSbuser==sbusers.status" (click)="PauseProduct(sbusers)">
+                    <i class="fa fa-check-circle"></i>                  
+                </button>
+                <button type="button" class="btn btn-sm btn-warning" *ngIf="pausedSbuser==sbusers.status" (click)="ActivateProduct(sbusers)">
+                  <i class="fa fa-pause-circle"></i>                  
+                </button>
+                <!--<button>{{sbusers.status}}</button>-->
+              </td>
+              <td>
+                <button type="button" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>  
+</div>
